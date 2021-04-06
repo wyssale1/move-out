@@ -1,26 +1,21 @@
 <?php
-    include_once "mySQL.php";
+    $dbServername = "localhost";
+    $dbUser = "root";
+    $dbPassword = "";
+    $dbName = "bill";
+    $table = "products";
 
-    $sql = "INSERT INTO products (category, state, titel, url, price) VALUES ('1', '1', 'Couch', '-', '300')";
+    $conn = new mysqli($dbServername, $dbUser, $dbPassword, $dbName);
 
-        if (mysqli_query($conn, $sql)) {
-            echo "New record created successfully";
-        } else {
-            echo "Error: " . $sql . "" . mysqli_error($conn);
-        }
-        $conn->close();
-
-    print "Salve Rebi";
-
-    if(isset($_POST['way'])) {
-        $sql = "INSERT INTO products (category, state, titel, url, price) VALUES ('1', '1', 'Couch', '-', '300')";
-
-        if (mysqli_query($conn, $sql)) {
-            echo "New record created successfully";
-        } else {
-            echo "Error: " . $sql . "" . mysqli_error($conn);
-        }
-        $conn->close();
+    if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
     }
-    $category, '0', $title, '-', $price
+
+    /*
+    $dbServername = "localhost";
+    $dbUser = "u373636090_gartenhof";
+    $dbPassword = "Ju9>Kg$0";
+    $dbName = "u373636090_gartenhof";
+    $table = "products";
+    */
 ?>

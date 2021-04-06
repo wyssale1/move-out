@@ -1,12 +1,4 @@
-create table products (
-	id int(11) not null PRIMARY KEY AUTO_INCREMENT,
-    category int(3) not null,
-    state int(1) not null,
-    titel varchar(128) not null,
-    url varchar(256),
-    price int(11)
-);
-
+/* Categories */
 create table categories (
 	id int(11) not null PRIMARY KEY AUTO_INCREMENT,
     category varchar(128) not null,
@@ -14,6 +6,29 @@ create table categories (
 );
 
 INSERT INTO categories (category, category_titel) VALUES ('kitchen', 'Küche');
+
+/* Products */
+
+create table products (
+	id int(11) not null PRIMARY KEY AUTO_INCREMENT,
+    category int(3) not null,
+    state int(1) not null,
+    titel varchar(128) not null,
+    url varchar(256),
+    price int(11),
+    user varchar(20) not null
+);
+
+/* Users */
+create table users (
+	id int(11) not null PRIMARY KEY AUTO_INCREMENT,
+    username varchar(10) not null,
+    password varchar(128) not null,
+    name varchar(40) not null,
+    firstname varchar(40) not null
+);
+
+
 
 include_once "includes/connection.php";
 

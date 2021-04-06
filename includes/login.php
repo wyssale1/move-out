@@ -1,5 +1,5 @@
 <?php
-    include_once "includes/mySQL.php";
+    include_once "connection.php";
     session_start();
     $pdo = new PDO('mysql:host=localhost;dbname=u373636090_gartenhof', 'u373636090_gartenhof', 'Ju9>Kg$0');
     $input = json_decode(file_get_contents('php://input'), true);

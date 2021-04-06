@@ -1,5 +1,5 @@
 <?php
-    include_once "mySQL.php";
+    include_once "connection.php";
     $input = json_decode(file_get_contents('php://input'), true);
     $function = $input['function'];
 

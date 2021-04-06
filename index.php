@@ -1,5 +1,5 @@
 <?php
-    include_once "includes/mySQL.php";
+    include_once "includes/connection.php";
     session_start();
     if(!isset($_SESSION['userid'])) {
         header("Location: /login.php");
@@ -20,52 +20,15 @@
     </head>
     <body>
         <header>
-            <h1>Übersicht</h1>
+            <h1>Hallo <i><?php echo $_SESSION['firstname']; ?></i></h1>
             <div class="nav">
-                <p class="active">Übersicht</p>
-                <p>Kosten</p>
+                <p class="active" data-page="categories">Übersicht</p>
+                <p data-page="costs">Kosten</p>
             </div>
         </header>
         <main>
             <h2>Kategorie auswählen</h2>
-            <?php
-                $sql_categories = "SELECT * FROM categories;";
-                $result_cat = mysqli_query($conn, $sql_categories);
-                if (mysqli_num_rows($result_cat) > 0) {
-                    while($cate = mysqli_fetch_assoc($result_cat)) {
-                        $num = $cate["id"];
-                        $sql = "SELECT * FROM $table WHERE category LIKE '$num';";
-                        $result = mysqli_query($conn, $sql);
-                        echo "<div data-id=\"" . $cate['id'] . "\" class=\"category\">";
-                        echo "<img class=\"icon\" src=\"img/" . $cate['category'] . ".svg\" alt=\"" . $cate['category_titel'] . "\">";
-                        echo "<h3 class=\"title\">" . $cate['category_titel'] . "</h3>";
-                        echo "<svg class=\"arrowBtn\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 11.75 20\"><path d=\"M11.43 9.22L2.53.32A1.08 1.08 0 0 0 1.75 0a1.06 1.06 0 0 0-.77.32L.32 1a1.11 1.11 0 0 0 0 1.55L7.8 10 .31 17.48a1.09 1.09 0 0 0-.31.77 1.13 1.13 0 0 0 .31.78l.66.65a1.1 1.1 0 0 0 1.55 0l8.91-8.91a1 1 0 0 0 .31-.77 1.07 1.07 0 0 0-.31-.78z\"/></svg>";    
-                        echo "<div class=\"title-line\">";
-                            echo "<p></p>";
-                            echo "<p>Titel</p>";
-                            echo "<p>Preis [CHF]</p>";
-                        echo "</div>";
-                        echo "<div class=\"products open\">";
-                        if (mysqli_num_rows($result) > 0) {
-                            while($item = mysqli_fetch_assoc($result)) {
-                                echo "<div class=\"product\" data-id=\"" . $item["id"] . "\" data-state=\"" . $item["state"] . "\">";
-                                if ($item["state"] == "1") {
-                                    echo "<img src=\"img/mark-done.svg\" alt=\"State\">";
-                                } else {
-                                    echo "<img src=\"img/mark-open.svg\" alt=\"State\">";
-                                }
-                                    echo "<p class=\"product-title\">" . $item["titel"] . "</p>";
-                                    echo "<p class=\"product-price\">" . $item["price"] . "</p>";
-                                echo "</div>"; 
-                            }
-                            echo "</div>";
-                        }
-                        echo "</div>";
-                        echo "</div>";
-                    }
-                }               
-                mysqli_close($conn);
-            ?>
+            
         </main>
         <footer>
             <button class="addProduct"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50"><path d="M45.54,20.54H30.36a.9.9,0,0,1-.9-.9V4.46a4.46,4.46,0,0,0-8.92,0V19.64a.9.9,0,0,1-.9.9H4.46a4.46,4.46,0,0,0,0,8.92H19.64a.9.9,0,0,1,.9.9V45.54a4.46,4.46,0,0,0,8.92,0V30.36a.9.9,0,0,1,.9-.9H45.54a4.46,4.46,0,0,0,0-8.92Z"/></svg></button>
@@ -79,6 +42,7 @@
                 <button id="addNewProduct"><svg class="arrowBtn" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11.75 20"><path d="M11.43 9.22L2.53.32A1.08 1.08 0 0 0 1.75 0a1.06 1.06 0 0 0-.77.32L.32 1a1.11 1.11 0 0 0 0 1.55L7.8 10 .31 17.48a1.09 1.09 0 0 0-.31.77 1.13 1.13 0 0 0 .31.78l.66.65a1.1 1.1 0 0 0 1.55 0l8.91-8.91a1 1 0 0 0 .31-.77 1.07 1.07 0 0 0-.31-.78z"/></svg></button>
             </div>
         </footer>
+        <template id="pageTitle"><h2></h2></template>
         <template id="option"><option value=""></option></template>
         <template id="newEntryTemp">
             <div class="product" data-id data-state="0"> 
