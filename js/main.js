@@ -13,7 +13,7 @@ const generalModel = {
         console.log(page)
         this.resetPage()
         if (page.match("categories")) { 
-            this.generateOverview()
+            generalModel.generateOverview()
         } else if(page == "costs") { 
             this.generateCosts()
         }
@@ -28,9 +28,10 @@ const generalModel = {
         this.generatePageTitle("Kosten")
     },
     generatePageTitle(title) {
-        let titleContainer = elements.pageTitle.content.cloneNode(true)
-        titleContainer.querySelector("h2").innerText = title
-        elements.main.appendChild(title)
+        let titleContainer = document.querySelector("template#pageTitle").content.cloneNode(true)
+        titleContainer.querySelector("h2").innerHTML = title
+        document.querySelector("main").appendChild(titleContainer)
+        console.log("salve")
     }
 }
 

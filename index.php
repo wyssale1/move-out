@@ -1,10 +1,10 @@
 <?php
     include_once "includes/connection.php";
     session_start();
-    if(!isset($_SESSION['userid'])) {
-        header("Location: /login.php");
-        die();
-    }
+    //if(!isset($_SESSION['userid'])) {
+      //  header("Location: login.php");
+      //  die();
+    //}
 ?>
 
 <!DOCTYPE html>
@@ -42,7 +42,7 @@
                 <button id="addNewProduct"><svg class="arrowBtn" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11.75 20"><path d="M11.43 9.22L2.53.32A1.08 1.08 0 0 0 1.75 0a1.06 1.06 0 0 0-.77.32L.32 1a1.11 1.11 0 0 0 0 1.55L7.8 10 .31 17.48a1.09 1.09 0 0 0-.31.77 1.13 1.13 0 0 0 .31.78l.66.65a1.1 1.1 0 0 0 1.55 0l8.91-8.91a1 1 0 0 0 .31-.77 1.07 1.07 0 0 0-.31-.78z"/></svg></button>
             </div>
         </footer>
-        <template id="pageTitle"><h2></h2></template>
+        <template id="pageTitle"><h2 class="page-title"></h2></template>
         <template id="option"><option value=""></option></template>
         <template id="newEntryTemp">
             <div class="product" data-id data-state="0"> 

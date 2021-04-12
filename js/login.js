@@ -36,7 +36,7 @@ const backendModel = {
                 password: pswd
             })
         }).then((response) => response.json())
-        .then((data) => (data.status == "ok") ? frontendModel.loggedIn() : frontendModel.errorLogin() )
+        .then((data) => (data.status == "true") ? frontendModel.loggedIn() : frontendModel.errorLogin() )
     }
 }
 

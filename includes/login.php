@@ -1,24 +1,34 @@
 <?php
     include_once "connection.php";
     session_start();
-    $pdo = new PDO('mysql:host=localhost;dbname=u373636090_gartenhof', 'u373636090_gartenhof', 'Ju9>Kg$0');
     $input = json_decode(file_get_contents('php://input'), true);
-    $name = $input['name'];
-    $passwort = $input['password'];
+    $function = $input['function'];
 
-    if(isset($name)) {
-        $email = $name;
-         
-        $statement = $pdo->prepare("SELECT * FROM users WHERE email = :email");
-        $result = $statement->execute(array('email' => $email));
-        $user = $statement->fetch();
-             
-        //Überprüfung des Passworts
-        if ($user !== false && password_verify($passwort, $user['passwort'])) {
-            $_SESSION['userid'] = $user['id'];
-            echo '{"status":"ok"}';
-        } else {
-            echo '{"status":"error"}';
+    if ($function == "login") {
+        $username = $input['username'];
+        $password = $input['password'];
+
+        if(isset($username)) {
+            $sql = "SELECT * from users WHERE username LIKE '$username';";
+            $result = mysqli_query($conn, $sql);
+            if (mysqli_num_rows($result) > 0) {
+                while($user = mysqli_fetch_assoc($result)) {
+                    if ($user !== false && password_verify($password, $user['password'])) {
+                        $_SESSION['userid'] = $user['id'];
+                        $_SESSION['user'] = $user['username'];
+                        $_SESSION['firstname'] = $user['firstname'];
+                        $_SESSION['name'] = $user['name'];
+                        echo 'true';
+                    } else {
+                        echo 'false';
+                    }
+                }
+            } else {
+                echo 'false';
+            }
         }
+    } elseif($function == "logout") {
+        session_destroy();
     }
+    
 ?>
