@@ -25,6 +25,16 @@
             echo "Error: " . $sql_update_state . "" . mysqli_error($conn);
         }
         $conn->close();
+    }   elseif ($function == "updateUser") {
+            $id = $input['id'];
+            $user = $input['user'];
+            $sql_update_state = "UPDATE $table SET user=$user WHERE id=$id;";
+            if (mysqli_query($conn, $sql_update_state)) {
+                echo "Updated record successfully";
+            } else {
+                echo "Error: " . $sql_update_state . "" . mysqli_error($conn);
+            }
+            $conn->close();
     } elseif ($function == "deleteProduct") {
         $id = $input['id'];
         $sql_delete_product = "DELETE FROM $table WHERE id='$id';";
@@ -34,6 +44,20 @@
             echo "Error: " . $sql_delete_product . "" . mysqli_error($conn);
         }
         $conn->close();
+    } elseif ($function == "getAllData") {
+        $data = array();
+        $cat = $input['cat'];
+        $sql_get_cat = "SELECT * FROM $table WHERE (category = '$cat');";
+        $result_cat = mysqli_query($conn, $sql_get_cat);
+        if (mysqli_num_rows($result_cat) > 0) {
+            while($content = mysqli_fetch_assoc($result_cat)) {
+                array_push($data, array("id"=>$content['id'], "category"=>$content['category'], "state"=>$content['state'], "title"=>$content['titel'], "price"=>$content['price']));
+            }
+            echo json_encode($data);
+        } else {
+            echo "false";
+        }
+        $conn->close(); 
     } elseif ($function == "getData") {
         $id = $input['id'];
         $sql_get = "SELECT * FROM $table WHERE id LIKE '$id';";
@@ -44,6 +68,19 @@
             }
         } else {
             echo "keine Daten";
+        }
+        $conn->close();
+    } elseif ($function == "getUsers") {
+        $data = array();
+        $sql_get = "SELECT * FROM users;";
+        $result = mysqli_query($conn, $sql_get);
+        if (mysqli_num_rows($result) > 0) {
+            while($item = mysqli_fetch_assoc($result)) {
+                array_push($data, array("id"=>$item['id'], "username"=>$item['username'], "name"=>$item['name'], "firstname"=>$item['firstname']));
+            }
+            echo json_encode($data);
+        } else {
+            echo "false";
         }
         $conn->close();
     } 

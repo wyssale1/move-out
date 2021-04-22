@@ -1,11 +1,10 @@
 <?php
-    include_once "includes/mySQL.php";
+    include_once "includes/connection.php";
     session_start();
     if(isset($_SESSION['userid'])) {
         header("Location: /");
         die();
     }
-   
 ?>
 <!DOCTYPE html>
  <html class="no-js" lang="en">

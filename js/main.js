@@ -1,4 +1,5 @@
-!function(e,t){"use strict";var n=null,a="ontouchstart"in e||navigator.MaxTouchPoints>0||navigator.msMaxTouchPoints>0,i=a?"touchstart":"mousedown",o=a?"touchend":"mouseup",m=a?"touchmove":"mousemove",r=0,u=0,s=10,c=10;function l(e){var n;d(),n=e,e=a&&n.touches&&n.touches[0]?n.touches[0]:n,this.dispatchEvent(new CustomEvent("long-press",{bubbles:!0,cancelable:!0,detail:{clientX:e.clientX,clientY:e.clientY},clientX:e.clientX,clientY:e.clientY,offsetX:e.offsetX,offsetY:e.offsetY,pageX:e.pageX,pageY:e.pageY,screenX:e.screenX,screenY:e.screenY}))||t.addEventListener("click",function e(n){t.removeEventListener("click",e,!0),function(e){e.stopImmediatePropagation(),e.preventDefault(),e.stopPropagation()}(n)},!0)}function v(a){d(a);var i=a.target,o=parseInt(function(e,n,a){for(;e&&e!==t.documentElement;){var i=e.getAttribute(n);if(i)return i;e=e.parentNode}return a}(i,"data-long-press-delay","800"),10);n=function(t,n){if(!(e.requestAnimationFrame||e.webkitRequestAnimationFrame||e.mozRequestAnimationFrame&&e.mozCancelRequestAnimationFrame||e.oRequestAnimationFrame||e.msRequestAnimationFrame))return e.setTimeout(t,n);var a=(new Date).getTime(),i={},o=function(){(new Date).getTime()-a>=n?t.call():i.value=requestAnimFrame(o)};return i.value=requestAnimFrame(o),i}(l.bind(i,a),o)}function d(t){var a;(a=n)&&(e.cancelAnimationFrame?e.cancelAnimationFrame(a.value):e.webkitCancelAnimationFrame?e.webkitCancelAnimationFrame(a.value):e.webkitCancelRequestAnimationFrame?e.webkitCancelRequestAnimationFrame(a.value):e.mozCancelRequestAnimationFrame?e.mozCancelRequestAnimationFrame(a.value):e.oCancelRequestAnimationFrame?e.oCancelRequestAnimationFrame(a.value):e.msCancelRequestAnimationFrame?e.msCancelRequestAnimationFrame(a.value):clearTimeout(a)),n=null}"function"!=typeof e.CustomEvent&&(e.CustomEvent=function(e,n){n=n||{bubbles:!1,cancelable:!1,detail:void 0};var a=t.createEvent("CustomEvent");return a.initCustomEvent(e,n.bubbles,n.cancelable,n.detail),a},e.CustomEvent.prototype=e.Event.prototype),e.requestAnimFrame=e.requestAnimationFrame||e.webkitRequestAnimationFrame||e.mozRequestAnimationFrame||e.oRequestAnimationFrame||e.msRequestAnimationFrame||function(t){e.setTimeout(t,1e3/60)},t.addEventListener(o,d,!0),t.addEventListener(m,function(e){var t=Math.abs(r-e.clientX),n=Math.abs(u-e.clientY);(t>=s||n>=c)&&d()},!0),t.addEventListener("wheel",d,!0),t.addEventListener("scroll",d,!0),t.addEventListener(i,function(e){r=e.clientX,u=e.clientY,v(e)},!0)}(window,document);
+!function(e,t){"use strict";var n=null,a="ontouchstart"in e||navigator.MaxTouchPoints>0||navigator.msMaxTouchPoints>0,i=a?"touchstart":"mousedown",o=a?"touchend":"mouseup",m=a?"touchmove":"mousemove",r=0,u=0,s=10,c=10;function l(e){var n;d(),n=e,e=a&&n.touches&&n.touches[0]?n.touches[0]:n,this.dispatchEvent(new CustomEvent("long-press",{bubbles:!0,cancelable:!0,detail:{clientX:e.clientX,clientY:e.clientY},clientX:e.clientX,clientY:e.clientY,offsetX:e.offsetX,offsetY:e.offsetY,pageX:e.pageX,pageY:e.pageY,screenX:e.screenX,screenY:e.screenY}))||t.addEventListener("click",function e(n){t.removeEventListener("click",e,!0),function(e){e.stopImmediatePropagation(),e.preventDefault(),e.stopPropagation()}(n)},!0)}function v(a){d(a);var i=a.target,o=parseInt(function(e,n,a){for(;e&&e!==t.documentElement;){var i=e.getAttribute(n);if(i)return i;e=e.parentNode}return a}(i,"data-long-press-delay","700"),10);n=function(t,n){if(!(e.requestAnimationFrame||e.webkitRequestAnimationFrame||e.mozRequestAnimationFrame&&e.mozCancelRequestAnimationFrame||e.oRequestAnimationFrame||e.msRequestAnimationFrame))return e.setTimeout(t,n);var a=(new Date).getTime(),i={},o=function(){(new Date).getTime()-a>=n?t.call():i.value=requestAnimFrame(o)};return i.value=requestAnimFrame(o),i}(l.bind(i,a),o)}function d(t){var a;(a=n)&&(e.cancelAnimationFrame?e.cancelAnimationFrame(a.value):e.webkitCancelAnimationFrame?e.webkitCancelAnimationFrame(a.value):e.webkitCancelRequestAnimationFrame?e.webkitCancelRequestAnimationFrame(a.value):e.mozCancelRequestAnimationFrame?e.mozCancelRequestAnimationFrame(a.value):e.oCancelRequestAnimationFrame?e.oCancelRequestAnimationFrame(a.value):e.msCancelRequestAnimationFrame?e.msCancelRequestAnimationFrame(a.value):clearTimeout(a)),n=null}"function"!=typeof e.CustomEvent&&(e.CustomEvent=function(e,n){n=n||{bubbles:!1,cancelable:!1,detail:void 0};var a=t.createEvent("CustomEvent");return a.initCustomEvent(e,n.bubbles,n.cancelable,n.detail),a},e.CustomEvent.prototype=e.Event.prototype),e.requestAnimFrame=e.requestAnimationFrame||e.webkitRequestAnimationFrame||e.mozRequestAnimationFrame||e.oRequestAnimationFrame||e.msRequestAnimationFrame||function(t){e.setTimeout(t,1e3/60)},t.addEventListener(o,d,!0),t.addEventListener(m,function(e){var t=Math.abs(r-e.clientX),n=Math.abs(u-e.clientY);(t>=s||n>=c)&&d()},!0),t.addEventListener("wheel",d,!0),t.addEventListener("scroll",d,!0),t.addEventListener(i,function(e){r=e.clientX,u=e.clientY,v(e)},!0)}(window,document)
+
 const appHeight = () => {
     const t = document.documentElement;
     t.style.setProperty("--app-height", `${window.innerHeight}px`)
@@ -6,38 +7,38 @@ const appHeight = () => {
 window.addEventListener("resize", appHeight), appHeight();
 
 const categories = ["", "Küche", "Wohnzimmer", "Schlafzimmer", "Arbeitszimmer", "Bad", "Terrasse"]
-const url = "../includes/getData.php"
+const url = "../move-out/includes/getData.php"
 
 const generalModel = {
     generatePage(page) {
-        console.log(page)
-        this.resetPage()
         if (page.match("categories")) { 
             generalModel.generateOverview()
-        } else if(page == "costs") { 
-            this.generateCosts()
+        } else if(page.match("costs")) { 
+            generalModel.generateCosts()
         }
     },
     resetPage() {
-        elements.main.remove()
+        document.querySelectorAll(".category, costs").forEach(el => el.remove())
     },
-    generateOverview() {
-        this.generatePageTitle("Kategorie auswählen")
+    generateOverview(data) {
+        generalModel.generatePageTitle("Kategorie auswählen")
+        databaseModel.getAllData(1)
     },
     generateCosts() {
-        this.generatePageTitle("Kosten")
+        generalModel.generatePageTitle("Kosten")
+        let temp = document.querySelector("template#costs")
+        let costs = temp.content.cloneNode(true)
+        elements.main.appendChild(costs)
     },
     generatePageTitle(title) {
-        let titleContainer = document.querySelector("template#pageTitle").content.cloneNode(true)
-        titleContainer.querySelector("h2").innerHTML = title
-        document.querySelector("main").appendChild(titleContainer)
-        console.log("salve")
+        document.querySelector(".page-title").innerHTML = title
     }
 }
 
 const frontendModel = {
     changeNav(){
         elements.navItems.forEach(item => item.classList.remove("active"))
+        generalModel.resetPage()
         generalModel.generatePage(this.dataset.page)
         this.classList.add("active")
     },
@@ -50,6 +51,7 @@ const frontendModel = {
         newProduct.querySelector(".product-title").innerHTML = title
         newProduct.querySelector(".product-price").innerHTML = price
         document.querySelector(".category[data-id='" + cat + "'] .products").appendChild(newProduct)
+        document.querySelectorAll(".product").forEach(product => product.addEventListener("long-press", databaseModel.getData))
         backendModel.resetForm()
     },
     openNewEntryModal(){
@@ -67,7 +69,7 @@ const frontendModel = {
 
 const backendModel = {
     changeState(){
-        (this.dataset.state == "1") ? databaseModel.updateProduct(this.dataset.id, "0", this) : databaseModel.updateProduct(this.dataset.id, "1", this)
+        (this.dataset.state == "1") ? databaseModel.updateState(this.dataset.id, "0", this) : databaseModel.updateState(this.dataset.id, "1", this)
     },
     addNewEntry(){
         if (document.querySelector("#title").value && document.querySelector("#price").value) {
@@ -83,12 +85,29 @@ const backendModel = {
     resetForm() {
         document.querySelectorAll(".new-product-form input").forEach(input => input.value = "")
     },
-    generateCategories() {
+    generateCategoriesSelection() {
         for(let i = 1; i < categories.length; i++) {
             let option = document.querySelector("template#option").content.cloneNode(true)
             option.querySelector("option").value = i
             option.querySelector("option").innerHTML = categories[i]
             document.querySelector("#category").appendChild(option)
+        }
+    },
+    generateCategory(cat, data) {
+        if (data) {
+            let temp = document.querySelector("template#newCategory")
+            let container = temp.content.cloneNode(true)
+            container.querySelector(".category").dataset.id = cat
+            container.querySelector("img").src = "img/" + categories[cat] + ".svg"
+            container.querySelector(".title").innerHTML = categories[cat]
+            elements.main.appendChild(container)
+            document.querySelectorAll(".category :is(.icon, .title, .arrowBtn)").forEach(el => el.addEventListener("click", frontendModel.changeCategory))
+            data.forEach(set => frontendModel.addNewEntry(set.id, cat, set.title, set.price))
+        } else {
+            console.log(categories.length)
+        }
+        if (categories.length > cat + 1) {
+            databaseModel.getAllData(cat+1)
         }
     },
     generateDetailModal(id,titel,url,price) {
@@ -100,6 +119,17 @@ const backendModel = {
         document.body.prepend(detail_modal)
         document.querySelector("#close-modal").addEventListener("click", backendModel.closeDetailModal)
         document.querySelector(".deleteBtn").addEventListener("click", backendModel.getIdModal)
+        document.querySelector(".saveBtn").addEventListener("click", backendModel.updateUser)
+        databaseModel.getUsers()
+    },
+    generateUserSelection(data) {
+        console.log(data.length)
+        for(let i = 0; i < data.length; i++) {
+            let option = document.querySelector("template#option").content.cloneNode(true)
+            option.querySelector("option").value = data[i].id
+            option.querySelector("option").innerHTML = data[i].firstname
+            document.querySelector("select#user").appendChild(option)
+        }
     },
     closeDetailModal() {
         document.querySelector(".detail").remove()
@@ -107,6 +137,9 @@ const backendModel = {
     getIdModal() {
         let id = document.querySelector(".detail .container").dataset.id
         databaseModel.deleteProduct(id)
+    },
+    updateUser() {
+        databaseModel.updateUser(this.closest(".container").dataset.id, document.querySelector("select#user").value)
     }
 }
 
@@ -123,7 +156,7 @@ const databaseModel = {
         }).then((data) => data.text())
         .then((data) => frontendModel.addNewEntry(data,cat,title,price))
     },
-    updateProduct(id, state, target){
+    updateState(id, state, target){
         fetch(url, {
             method: "post",
             body: JSON.stringify({
@@ -133,6 +166,18 @@ const databaseModel = {
             })
         }).then(data => {
             if(data.status == 200) frontendModel.changeState(target)
+        })
+    },
+    updateUser(id, user){
+        fetch(url, {
+            method: "post",
+            body: JSON.stringify({
+                function: "updateUser",
+                id: id,
+                user: user
+            })
+        }).then(data => {
+            if(data.status == 200) backendModel.closeDetailModal()
         })
     },
     deleteProduct(id){
@@ -146,6 +191,16 @@ const databaseModel = {
             if(data.status == 200) backendModel.deleteProduct(id)
         })
     },
+    getAllData(cat) {
+        fetch(url, {
+            method: "post",
+            body: JSON.stringify({
+                function: "getAllData",
+                cat: cat
+            })
+        }).then((response) => response.json())
+        .then((data) => {(data != false) ? backendModel.generateCategory(cat, data) : backendModel.generateCategory(cat)})
+    },
     getData(){
         fetch(url, {
             method: "post",
@@ -155,6 +210,15 @@ const databaseModel = {
             })
         }).then((response) => response.json())
         .then((data) => backendModel.generateDetailModal(data.id,data.titel,data.url,data.price) )
+    },
+    getUsers() {
+        fetch(url, {
+            method: "post",
+            body: JSON.stringify({
+                function: "getUsers"
+            })
+        }).then((response) => response.json())
+        .then((data) => {(data != false) ? backendModel.generateUserSelection(data) : console.log("no users")})
     }
 }
 
@@ -175,4 +239,6 @@ elements.products.forEach(product => product.addEventListener("click", backendMo
 elements.products.forEach(product => product.addEventListener("long-press", databaseModel.getData))
 elements.newModal.addEventListener("click", frontendModel.openNewEntryModal)
 elements.addNewEntryBtn.addEventListener("click", backendModel.addNewEntry)
-window.addEventListener("load", backendModel.generateCategories)
+window.addEventListener("load", backendModel.generateCategoriesSelection)
+
+window.addEventListener("load", generalModel.generatePage("categories"))

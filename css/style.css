@@ -4,6 +4,7 @@
     --blue: #4044c9;
     --red: #e74c3c;
     --gray-light: #f2f2f2;
+    --gray-medium: #d1d1d6;
     --gray-normal: #c7c7c9;
     --black: #646464;
     --shadow:   0 2.8px 2.2px rgba(0, 0, 0, 0.02),
@@ -24,13 +25,26 @@ h1 {
     margin: 0;
 }
 
+:is(select, input) {
+    font-family: 'Roboto', sans-serif;
+    height: 30px;
+    appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+    border: solid 1px var(--blue);
+    border-radius: 5px;
+    padding: 2px 10px;
+    font-size: 16px;
+    background-color: var(--gray-light);
+}
+
 header, main, footer {
     max-width: 700px;
     margin: auto;
 }
 
 header {
-    padding: 20px 0;
+    padding: 20px 10px;
     display: grid;
     grid-template-columns: auto auto;
     grid-template-rows: 80px;
@@ -44,10 +58,10 @@ header h1 {
 header .nav {
     justify-self: end;
     align-self: center;
-    padding: 5px 12.5px;
+    padding: 10px 12.5px;
     position: relative;
     background-color: var(--gray-light);
-    border-radius: 15px;
+    border-radius: 20px;
     display: grid;
     grid-template-columns: auto auto;
     justify-content: start;
@@ -75,12 +89,12 @@ header .nav p.active {
 header .nav p.active::before {
     position: absolute;
     content: "";
-    top: -6px;
+    top: -10px;
     left: -12.5px;
     right: -12.5px;
-    bottom: -5px;
+    bottom: -10px;
     background-color: var(--blue);
-    border-radius: 15px;
+    border-radius: 20px;
     z-index: -1;
     box-shadow: 0 26px 21px rgba(0, 0, 0, 0.07);
 }
@@ -131,7 +145,8 @@ button {
     border-radius: 10px;
     display: grid;
     grid-template-columns: 2fr 1fr;
-    grid-template-rows: 40px 30px 50px 30px 30px 35px;
+    grid-template-rows: 40px 30px 40px 40px;
+    gap: 10px 20px;
 }
 
 .detail .container h4 {
@@ -149,13 +164,19 @@ button {
 .detail .container #close-modal {
     cursor: pointer;
     position: absolute;
-    top: -45px;
+    top: -30px;
     right: 20px;
     height: 15px;
 }
 
-.detail .container :is(a, p) {
+.detail .container :is(select, p) {
     grid-row: 3;
+}
+
+.detail .container select {
+    grid-column: 1;
+    max-width: 150px;
+    background-color: var(--gray-light);
 }
 
 .detail .container p:after {
@@ -163,7 +184,7 @@ button {
 }
 
 .detail .container button {
-    grid-row: 6;
+    grid-row: 4;
     border-radius: 5px;
     height: 35x;
     display: grid;
@@ -306,7 +327,7 @@ footer .addProduct {
 
 footer.open .addProduct {
     box-shadow: none;
-    bottom: 25px;
+    bottom: 35px;
     border: solid 1px var(--blue);
     background-color: var(--gray-normal);
 }
@@ -334,10 +355,10 @@ footer .new-product-form > * {
 
 footer.open .new-product-form {
     height: 100px;
-    background-color: var(--gray-normal);
+    background-color: var(--gray-medium);
     border-radius: 20px 20px 0 0; 
     box-shadow: 0px -5px 32px 2px rgba(0,0,0,0.5);
-    padding: 0 15px;
+    padding: 10px 15px;
     display: grid;
     align-content: center;
     grid-template-columns: 1fr 1fr 0.5fr 50px 50px;
@@ -356,17 +377,7 @@ footer.open .new-product-form > * {
 }
 
 .new-product-form :is(input, select) {
-    font-family: 'Roboto', sans-serif;
     grid-row: 2;
-    height: 30px;
-    appearance: none;
-    -webkit-appearance: none;
-    outline: none;
-    border: solid 1px var(--blue);
-    border-radius: 5px;
-    padding: 2px 10px;
-    font-size: 16px;
-    background-color: var(--gray-light);
 }
 
 .new-product-form select {

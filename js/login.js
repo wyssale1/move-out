@@ -29,7 +29,7 @@ const backendModel = {
     login(){
         let name = document.querySelector(".user.active").dataset.name
         let pswd = document.querySelector("input").value
-        fetch("../includes/login.php", {
+        fetch("../move-out/includes/login.php", {
             method: "post",
             body: JSON.stringify({
                 name: name,
