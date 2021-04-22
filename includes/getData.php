@@ -2,6 +2,7 @@
     include_once "connection.php";
     $input = json_decode(file_get_contents('php://input'), true);
     $function = $input['function'];
+    session_start();
 
     if ($function == "addNewEntry") {
         $category = $input['category'];
@@ -85,7 +86,8 @@
         $conn->close();
     } elseif ($function == "personalCosts") {
         $data = array();
-        $sql_get = "SELECT category, titel, price FROM $table WHERE user LIKE $_SESSION['userid'];";
+        $id = $_SESSION['userid'];
+        $sql_get = "SELECT category, titel, price FROM $table WHERE user LIKE $id;";
         $result = mysqli_query($conn, $sql_get);
         if (mysqli_num_rows($result) > 0) {
             while($item = mysqli_fetch_assoc($result)) {
