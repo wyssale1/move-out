@@ -11,9 +11,6 @@ const frontendModel = {
         elements.users.forEach(user => user.classList.add("hide"))
         this.classList.add("active")
         elements.close.classList.remove("hide")
-        elements.input.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter')  backendModel.login()
-        });
     },
     closeUser() {
         elements.users.forEach(user => user.classList.remove("hide", "active"))

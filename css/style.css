@@ -488,3 +488,21 @@ footer.open .new-product-form > * {
         grid-column: 3;
     }
 }
+
+@media screen and (max-width: 450px) {
+    header {
+        grid-template-columns: auto;
+        grid-template-rows: 100px 80px;
+    }
+    header .nav {
+        place-self: center;
+    }
+
+    header .nav p {
+        font-size: 15pt;
+    }
+
+    .page-title {
+        display: none;
+    }
+}
