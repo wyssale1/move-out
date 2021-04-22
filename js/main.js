@@ -18,7 +18,7 @@ const generalModel = {
         }
     },
     resetPage() {
-        document.querySelectorAll(".category, costs").forEach(el => el.remove())
+        document.querySelectorAll(".category, .costs").forEach(el => el.remove())
     },
     generateOverview(data) {
         generalModel.generatePageTitle("Kategorie auswählen")
@@ -29,6 +29,9 @@ const generalModel = {
         let temp = document.querySelector("template#costs")
         let costs = temp.content.cloneNode(true)
         elements.main.appendChild(costs)
+        databaseModel.getPersonalCostsData()
+        databaseModel.getAllCostsData()
+        document.querySelectorAll(".costs :is(svg, h3, p)").forEach(el => el.addEventListener("click", costsModal.openCosts))
     },
     generatePageTitle(title) {
         document.querySelector(".page-title").innerHTML = title
@@ -103,8 +106,6 @@ const backendModel = {
             elements.main.appendChild(container)
             document.querySelectorAll(".category :is(.icon, .title, .arrowBtn)").forEach(el => el.addEventListener("click", frontendModel.changeCategory))
             data.forEach(set => frontendModel.addNewEntry(set.id, cat, set.title, set.price))
-        } else {
-            console.log(categories.length)
         }
         if (categories.length > cat + 1) {
             databaseModel.getAllData(cat+1)
@@ -219,6 +220,24 @@ const databaseModel = {
             })
         }).then((response) => response.json())
         .then((data) => {(data != false) ? backendModel.generateUserSelection(data) : console.log("no users")})
+    },
+    getPersonalCostsData() {
+        fetch(url, {
+            method: "post",
+            body: JSON.stringify({
+                function: "personalCosts"
+            })
+        }).then((response) => response.json())
+        .then((data) => {(data != false) ? costsModal.calculatePersonalCosts(data) : costsModal.calculatePersonalCosts()})
+    },
+    getAllCostsData() {
+        fetch(url, {
+            method: "post",
+            body: JSON.stringify({
+                function: "generalCosts"
+            })
+        }).then((response) => response.json())
+        .then((data) => {(data != false) ? costsModal.calculateGeneralCosts(data) : costsModal.calculateGeneralCosts()})
     }
 }
 

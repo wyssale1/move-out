@@ -3,7 +3,7 @@
     session_start();
     $input = json_decode(file_get_contents('php://input'), true);
     $function = $input['function'];
-
+    
     if ($function == "login") {
         $username = $input['username'];
         $password = $input['password'];

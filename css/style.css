@@ -212,14 +212,12 @@ button {
     padding: 0 20px;
 }
 
-.category {
+:is(.category, .my-costs, .overall-costs) {
     margin-bottom: 20px;
     padding: 20px 10px;
     background-color: var(--gray-light);
     border-radius: 15px;
     display: grid;
-    grid-template-columns: 60px auto 20px;
-    grid-template-rows: 50px;
     align-items: center;
     -webkit-touch-callout: none;
     user-select: none;
@@ -227,6 +225,11 @@ button {
     -webkit-tap-highlight-color: #4044c930;
     user-select: none;
     -webkit-user-select: none;
+}
+
+.category {
+    grid-template-columns: 60px auto 20px;
+    grid-template-rows: 50px;
 }
 
 .category :is(.icon, .title, .arrowBtn) {
@@ -299,6 +302,53 @@ button {
 
 .category .product img {
     height: 20px;
+}
+
+.costs :is(.my-costs, .overall-costs) {
+    grid-template-columns: 60px 165px auto 20px;
+    gap: 10px 0;
+}
+
+:is(.my-costs, .overall-costs) > :is(svg, h3, p) {
+    cursor: pointer;
+}
+
+.costs svg {
+    width: 40px;
+    max-height: 40px;
+    fill: var(--blue);
+}
+
+.costs .openBtn {
+    width: 15px;
+    transition: transform 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.costs :is(.my-costs, .overall-costs).open .openBtn {
+    transform: rotate(45deg);
+}
+
+.costs p.money {
+    justify-self: end;
+    padding-right: 10px;
+}
+
+.costs p.money:after {
+    content: ".-";
+}
+
+.costs .details {
+    display: none;
+    grid-column: 2 / 4;
+}
+
+.costs :is(.my-costs, .overall-costs).open .details {
+    display: block;
+}
+
+.costs .details .product {
+    display: grid;
+    grid-template-columns: auto 80px;
 }
 
 footer {

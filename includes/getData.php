@@ -83,5 +83,31 @@
             echo "false";
         }
         $conn->close();
-    } 
+    } elseif ($function == "personalCosts") {
+        $data = array();
+        $sql_get = "SELECT category, titel, price FROM $table WHERE user LIKE $_SESSION['userid'];";
+        $result = mysqli_query($conn, $sql_get);
+        if (mysqli_num_rows($result) > 0) {
+            while($item = mysqli_fetch_assoc($result)) {
+                array_push($data, array("category"=>$item['category'], "title"=>$item['titel'], "price"=>$item['price']));
+            }
+            echo json_encode($data);
+        } else {
+            echo "false";
+        }
+        $conn->close();
+    } elseif ($function == "generalCosts") {
+        $data = array();
+        $sql_get = "SELECT category, titel, price FROM $table;";
+        $result = mysqli_query($conn, $sql_get);
+        if (mysqli_num_rows($result) > 0) {
+            while($item = mysqli_fetch_assoc($result)) {
+                array_push($data, array("category"=>$item['category'], "title"=>$item['titel'], "price"=>$item['price']));
+            }
+            echo json_encode($data);
+        } else {
+            echo "false";
+        }
+        $conn->close();
+    }
 ?>

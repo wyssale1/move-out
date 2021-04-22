@@ -4,6 +4,8 @@ const appHeight = () => {
 };
 window.addEventListener("resize", appHeight), appHeight();
 
+const url = "../move-out/includes/login.php"
+
 const frontendModel = {
     chooseUser() {
         elements.users.forEach(user => user.classList.add("hide"))
@@ -15,7 +17,7 @@ const frontendModel = {
         this.classList.add("hide")
     },
     loggedIn() {
-        window.location.replace("/")
+        location.reload()
     },
     errorLogin() {
         elements.pwdfield.classList.add("error")
@@ -29,14 +31,15 @@ const backendModel = {
     login(){
         let name = document.querySelector(".user.active").dataset.name
         let pswd = document.querySelector("input").value
-        fetch("../move-out/includes/login.php", {
+        fetch(url, {
             method: "post",
             body: JSON.stringify({
-                name: name,
+                function: "login",
+                username: name,
                 password: pswd
             })
         }).then((response) => response.json())
-        .then((data) => (data.status == "true") ? frontendModel.loggedIn() : frontendModel.errorLogin() )
+        .then((data) => (data.status == true) ? frontendModel.loggedIn() : console.log(data) )
     }
 }
 
