@@ -30,6 +30,7 @@
             <h2 class="page-title"></h2>
         </main>
         <footer>
+            <button class="logoutBtn"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50"><path d="M31.25 27.08a2.09 2.09 0 0 0-2.08 2.09v8.33a2.09 2.09 0 0 1-2.09 2.08h-6.25V8.33a4.19 4.19 0 0 0-2.83-4l-.62-.2h9.7a2.09 2.09 0 0 1 2.09 2.08v6.29a2.08 2.08 0 0 0 4.16 0V6.25A6.25 6.25 0 0 0 27.08 0H4.69a1.89 1.89 0 0 0-.23.05 2.93 2.93 0 0 0-.29 0A4.17 4.17 0 0 0 0 4.17v37.5a4.19 4.19 0 0 0 2.84 4l12.53 4.18a4.4 4.4 0 0 0 1.3.19 4.17 4.17 0 0 0 4.16-4.17v-2.12h6.25a6.25 6.25 0 0 0 6.25-6.25v-8.33a2.09 2.09 0 0 0-2.08-2.09z"/><path d="M49.39 19.36L41.06 11a2.08 2.08 0 0 0-3.56 1.5v6.25h-8.33a2.09 2.09 0 1 0 0 4.17h8.33v6.25a2.09 2.09 0 0 0 3.56 1.47l8.33-8.33a2.09 2.09 0 0 0 0-2.95z"/></svg></button>
             <button class="addProduct"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50"><path d="M45.54,20.54H30.36a.9.9,0,0,1-.9-.9V4.46a4.46,4.46,0,0,0-8.92,0V19.64a.9.9,0,0,1-.9.9H4.46a4.46,4.46,0,0,0,0,8.92H19.64a.9.9,0,0,1,.9.9V45.54a4.46,4.46,0,0,0,8.92,0V30.36a.9.9,0,0,1,.9-.9H45.54a4.46,4.46,0,0,0,0-8.92Z"/></svg></button>
             <div class="new-product-form">
                 <label for="category">Kategorie</label>
@@ -44,7 +45,7 @@
         <template id="option"><option value=""></option></template>
         <template id="newCategory">
             <div data-id class="category">
-                <img class="icon" src="img/kitchen.svg" alt="Küche">
+                <img class="icon" src="" alt="">
                 <h3 class="title"></h3>
                 <svg class="arrowBtn" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11.75 20"><path d="M11.43 9.22L2.53.32A1.08 1.08 0 0 0 1.75 0a1.06 1.06 0 0 0-.77.32L.32 1a1.11 1.11 0 0 0 0 1.55L7.8 10 .31 17.48a1.09 1.09 0 0 0-.31.77 1.13 1.13 0 0 0 .31.78l.66.65a1.1 1.1 0 0 0 1.55 0l8.91-8.91a1 1 0 0 0 .31-.77 1.07 1.07 0 0 0-.31-.78z"></path></svg>
                 <div class="title-line"><p></p><p>Titel</p><p>Preis [CHF]</p></div>

@@ -366,6 +366,19 @@ footer button {
     place-items: center;
 }
 
+footer .logoutBtn {
+    z-index: -1;
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    background-color: #646464;
+}
+
+footer .logoutBtn svg {
+    height: 20px;
+    fill: var(--gray-light);
+}
+
 footer .addProduct {
     position: absolute;
     bottom: 15px;

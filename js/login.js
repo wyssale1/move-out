@@ -11,13 +11,14 @@ const frontendModel = {
         elements.users.forEach(user => user.classList.add("hide"))
         this.classList.add("active")
         elements.close.classList.remove("hide")
+        elements.input.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter')  backendModel.login()
+        });
     },
     closeUser() {
         elements.users.forEach(user => user.classList.remove("hide", "active"))
+        elements.pwdfield.value = ""
         this.classList.add("hide")
-    },
-    loggedIn() {
-        location.reload()
     },
     errorLogin() {
         elements.pwdfield.classList.add("error")
@@ -39,7 +40,7 @@ const backendModel = {
                 password: pswd
             })
         }).then((response) => response.json())
-        .then((data) => (data.status == true) ? frontendModel.loggedIn() : console.log(data) )
+        .then((data) => (data == true) ? location.reload() : console.log(data) )
     }
 }
 

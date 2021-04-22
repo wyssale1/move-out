@@ -111,5 +111,7 @@
             echo "false";
         }
         $conn->close();
+    } elseif ($function == "logoutFunc") {
+        session_destroy();
     }
 ?>
