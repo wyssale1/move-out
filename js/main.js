@@ -57,12 +57,15 @@ const frontendModel = {
     changeCategory() {
         this.parentNode.classList.toggle("open")
     },
-    addNewEntry(id, cat, title, price) {
+    addNewEntry(id, cat, title, price, state) {
         let newProduct = document.querySelector("template#newEntryTemp").content.cloneNode(true)
         newProduct.querySelector(".product").dataset.id = id
+        newProduct.querySelector(".product").dataset.state = state
+        newProduct.querySelector("img").src = (state == "1") ? "img/mark-done.svg" : "img/mark-open.svg"
         newProduct.querySelector(".product-title").innerHTML = title
         newProduct.querySelector(".product-price").innerHTML = price
         document.querySelector(".category[data-id='" + cat + "'] .products").appendChild(newProduct)
+        document.querySelectorAll(".product").forEach(product => product.addEventListener("click", backendModel.changeState))
         document.querySelectorAll(".product").forEach(product => product.addEventListener("long-press", databaseModel.getData))
         backendModel.resetForm()
     },
@@ -116,7 +119,7 @@ const backendModel = {
             container.querySelector(".title").innerHTML = categories[cat]
             elements.main.appendChild(container)
             document.querySelectorAll(".category :is(.icon, .title, .arrowBtn)").forEach(el => el.addEventListener("click", frontendModel.changeCategory))
-            data.forEach(set => frontendModel.addNewEntry(set.id, cat, set.title, set.price))
+            data.forEach(set => frontendModel.addNewEntry(set.id, cat, set.title, set.price, set.state))
         }
         if (categories.length > cat + 1) {
             databaseModel.getAllData(cat + 1)
@@ -284,7 +287,6 @@ const elements = {
 
 elements.navItems.forEach(item => item.addEventListener("click", frontendModel.changeNav))
 elements.categoryBoxes.forEach(categoryBox => categoryBox.addEventListener("click", frontendModel.changeCategory))
-elements.products.forEach(product => product.addEventListener("click", backendModel.changeState))
 elements.products.forEach(product => product.addEventListener("long-press", databaseModel.getData))
 elements.newModal.addEventListener("click", frontendModel.openNewEntryModal)
 elements.addNewEntryBtn.addEventListener("click", backendModel.addNewEntry)
