@@ -179,6 +179,10 @@ button {
     background-color: var(--gray-light);
 }
 
+.detail .container select:focus {
+    background-color: white;
+}
+
 .detail .container p:after {
     content: ".-";
 }
