@@ -8,6 +8,7 @@ window.addEventListener("resize", appHeight), appHeight();
 
 const categories = ["", "Küche", "Wohnzimmer", "Schlafzimmer", "Arbeitszimmer", "Bad", "Terrasse"]
 const url = "../move-out/includes/getData.php"
+const base_url = ""
 const umlautMap = {
     '\u00dc': 'UE',
     '\u00c4': 'AE',
